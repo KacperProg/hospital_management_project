@@ -38,11 +38,6 @@ public class Department {
             joinColumns = @JoinColumn(name = "department_id"),
             inverseJoinColumns = @JoinColumn(name = "nurse_id"))
     private List <Nurse> nurses;
-//    @ManyToMany(mappedBy = "departments")
-//    @JsonIgnoreProperties({"departments"})
-
-//    @ManyToMany(mappedBy = "departments")
-//    @JsonIgnoreProperties({"departments"})
 
 
     public Department(String name) {
