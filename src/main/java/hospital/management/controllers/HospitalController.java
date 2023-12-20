@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/hospital")
 
 public class HospitalController {
-    @Autowired
-    hospital.management.services.HospitalService hospitalService;
+//    @Autowired
+//    hospital.management.services.HospitalService hospitalService;
 
-    @GetMapping(value = "/{all}")
-    public ResponseEntity<Hospital> getAllStaff(){
-        try{
-            return new ResponseEntity<>(hospitalService.getAllStaff());
-        } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-    }
+//    @GetMapping(value = "/{all}")
+////    public ResponseEntity<Hospital> getAllStaff(){
+////        try{
+////            return new ResponseEntity<>(hospitalService.getAllStaff());
+////        } catch (Exception e){
+////            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+////        }
+////
+////    }
 
 }
