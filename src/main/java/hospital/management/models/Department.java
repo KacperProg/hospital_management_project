@@ -18,11 +18,8 @@ public class Department {
     @Column
     private String name;
 
-//    @Column
-//    private List <Nurse> nurses;
 
-//    @Column
-//    private List <Doctor> doctors;
+
 
 
     @ManyToOne
@@ -31,10 +28,22 @@ public class Department {
     private Hospital hospital;
 
 
+    @ManyToMany
+    @JoinTable(name = "department_nurses",
+            joinColumns = @JoinColumn(name = "doctors_id"),
+            inverseJoinColumns = @JoinColumn(name = "nurses_id"))
+
+//    @ManyToMany(mappedBy = "departments")
+//    @JsonIgnoreProperties({"departments"})
+    private List <Nurse> nurses;
+//    @ManyToMany(mappedBy = "departments")
+//    @JsonIgnoreProperties({"departments"})
+    private List <Doctor> doctors;
+
     public Department(String name) {
         this.name = name;
-//        this.nurses = new ArrayList<>();
-//        this.doctors = new ArrayList<>();
+        this.nurses = new ArrayList<>();
+        this.doctors = new ArrayList<>();
     }
 
     public Department() {
@@ -56,19 +65,19 @@ public class Department {
         this.name = name;
     }
 
-//    public List<Nurse> getNurses() {
-//        return nurses;
-//    }
-//
-//    public void setNurses(List<Nurse> nurses) {
-//        this.nurses = nurses;
-//    }
+    public List<Nurse> getNurses() {
+        return nurses;
+    }
 
-//    public List<Doctor> getDoctors() {
-//        return doctors;
-//    }
-//
-//    public void setDoctors(List<Doctor> doctors) {
-//        this.doctors = doctors;
-//    }
+    public void setNurses(List<Nurse> nurses) {
+        this.nurses = nurses;
+    }
+
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
+    }
 }
