@@ -19,9 +19,6 @@ public class Department {
     private String name;
 
 
-
-
-
     @ManyToOne
     @JoinColumn(name = "hospital_id")
     @JsonIgnoreProperties({"departments"})
@@ -29,16 +26,24 @@ public class Department {
 
 
     @ManyToMany
-    @JoinTable(name = "department_nurses",
-            joinColumns = @JoinColumn(name = "doctors_id"),
-            inverseJoinColumns = @JoinColumn(name = "nurses_id"))
+    @JoinTable(name = "department_doctor",
+            joinColumns = @JoinColumn(name = "department_id"),
+            inverseJoinColumns = @JoinColumn(name = "doctor_id"))
+    private List <Doctor> doctors;
+    //This list(field) represents the collection of 'Doctors' entites associated with a 'Department'
 
-//    @ManyToMany(mappedBy = "departments")
-//    @JsonIgnoreProperties({"departments"})
+
+    @ManyToMany
+    @JoinTable(name = "department_nurse",
+            joinColumns = @JoinColumn(name = "department_id"),
+            inverseJoinColumns = @JoinColumn(name = "nurse_id"))
     private List <Nurse> nurses;
 //    @ManyToMany(mappedBy = "departments")
 //    @JsonIgnoreProperties({"departments"})
-    private List <Doctor> doctors;
+
+//    @ManyToMany(mappedBy = "departments")
+//    @JsonIgnoreProperties({"departments"})
+
 
     public Department(String name) {
         this.name = name;

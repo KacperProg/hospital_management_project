@@ -2,6 +2,7 @@ package hospital.management.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,9 @@ public class Doctor {
     private Long id;
     @Column
     private String name;
+
     @ManyToMany(mappedBy = "doctors")
-    @JsonIgnoreProperties({"doctors"})
+//    @JsonIgnoreProperties({"doctors"})
     private List<Department> departments;
 
     // Constructor
@@ -44,7 +46,8 @@ public class Doctor {
     public void setName(String name) {
         this.name = name;
     }
-
+    @ManyToMany(mappedBy = "doctors")
+    @JsonIgnoreProperties({"departments"})
     public List<Department> getDepartments() {
         return departments;
     }
