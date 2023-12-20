@@ -18,12 +18,6 @@ public class Department {
     @Column
     private String name;
 
-//    @Column
-//    private List <Nurse> nurses;
-
-//    @Column
-//    private List <Doctor> doctors;
-
 
     @ManyToOne
     @JoinColumn(name = "hospital_id")
@@ -31,10 +25,30 @@ public class Department {
     private Hospital hospital;
 
 
+    @ManyToMany
+    @JoinTable(name = "department_doctor",
+            joinColumns = @JoinColumn(name = "department_id"),
+            inverseJoinColumns = @JoinColumn(name = "doctor_id"))
+    private List <Doctor> doctors;
+    //This list(field) represents the collection of 'Doctors' entites associated with a 'Department'
+
+
+    @ManyToMany
+    @JoinTable(name = "department_nurse",
+            joinColumns = @JoinColumn(name = "department_id"),
+            inverseJoinColumns = @JoinColumn(name = "nurse_id"))
+    private List <Nurse> nurses;
+//    @ManyToMany(mappedBy = "departments")
+//    @JsonIgnoreProperties({"departments"})
+
+//    @ManyToMany(mappedBy = "departments")
+//    @JsonIgnoreProperties({"departments"})
+
+
     public Department(String name) {
         this.name = name;
-//        this.nurses = new ArrayList<>();
-//        this.doctors = new ArrayList<>();
+        this.nurses = new ArrayList<>();
+        this.doctors = new ArrayList<>();
     }
 
     public Department() {
@@ -56,19 +70,19 @@ public class Department {
         this.name = name;
     }
 
-//    public List<Nurse> getNurses() {
-//        return nurses;
-//    }
-//
-//    public void setNurses(List<Nurse> nurses) {
-//        this.nurses = nurses;
-//    }
+    public List<Nurse> getNurses() {
+        return nurses;
+    }
 
-//    public List<Doctor> getDoctors() {
-//        return doctors;
-//    }
-//
-//    public void setDoctors(List<Doctor> doctors) {
-//        this.doctors = doctors;
-//    }
+    public void setNurses(List<Nurse> nurses) {
+        this.nurses = nurses;
+    }
+
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
+    }
 }
