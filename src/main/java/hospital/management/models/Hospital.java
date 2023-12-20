@@ -20,10 +20,10 @@ public class Hospital {
     @Column
     private  String address;
 
-//    @Column
-//    @OneToMany(mappedBy = "hospital")
-//    @JsonIgnoreProperties({"hospital"})
     @Column
+    @OneToMany(mappedBy = "hospital")
+    @JsonIgnoreProperties({"hospital"})
+
     private List <Department> departments;
 
 

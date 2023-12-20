@@ -1,4 +1,7 @@
 package hospital.management.repositories;
 
-public interface HospitalRepository {
+import hospital.management.models.Hospital;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface HospitalRepository extends JpaRepository<Hospital, Long> {
 }

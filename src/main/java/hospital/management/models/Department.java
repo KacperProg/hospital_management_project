@@ -18,22 +18,22 @@ public class Department {
     @Column
     private String name;
 
-    @Column
-    private List <Nurse> nurses;
+//    @Column
+//    private List <Nurse> nurses;
 
 //    @Column
 //    private List <Doctor> doctors;
 
-    @Column
-//    @ManyToOne
-//    @JoinColumn(name = "hospital_id")
-//    @JsonIgnoreProperties({"departments"})
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    @JsonIgnoreProperties({"departments"})
     private Hospital hospital;
 
 
     public Department(String name) {
         this.name = name;
-        this.nurses = new ArrayList<>();
+//        this.nurses = new ArrayList<>();
 //        this.doctors = new ArrayList<>();
     }
 
@@ -56,13 +56,13 @@ public class Department {
         this.name = name;
     }
 
-    public List<Nurse> getNurses() {
-        return nurses;
-    }
-
-    public void setNurses(List<Nurse> nurses) {
-        this.nurses = nurses;
-    }
+//    public List<Nurse> getNurses() {
+//        return nurses;
+//    }
+//
+//    public void setNurses(List<Nurse> nurses) {
+//        this.nurses = nurses;
+//    }
 
 //    public List<Doctor> getDoctors() {
 //        return doctors;
