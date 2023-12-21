@@ -36,4 +36,21 @@ public class DoctorController {
         }
     }
 
+    //Get All doctors
+    @GetMapping
+    public ResponseEntity<List<Doctor>> getAllDoctors(){
+        try{
+            //Create an empty list
+            List<Doctor> getAllDoctors = doctorService.getAllDoctors();
+            if(getAllDoctors.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(getAllDoctors, HttpStatus.OK);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+        }
+
+    }
+
 } //Last
