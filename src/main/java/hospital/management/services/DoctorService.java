@@ -25,5 +25,11 @@ public class DoctorService {
         return doctorRepository.findAll();
     }
 
+    //Add a doctor in the database
+    public void saveDoctor(Doctor doctor){
+        Doctor addDoctor = new Doctor(doctor.getName());
+        doctorRepository.save(addDoctor);
+    }
+
 
 } // Last
