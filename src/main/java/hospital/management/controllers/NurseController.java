@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,7 +23,7 @@ public class NurseController {
     NurseService nurseService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Nurse> findBNurseById(@PathVariable Long id){ //method declaration
+    public ResponseEntity<Nurse> findByNurseById(@PathVariable Long id){ //method declaration
         try {
             Optional<Nurse> findNurseById = nurseService.findNurseById(id);
             if (findNurseById.isPresent()){
@@ -31,12 +32,23 @@ public class NurseController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
       } catch(Exception e){
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);}
     }
 
+    @GetMapping
+    public ResponseEntity<List<Nurse>> findAllNurses(){
+            try {
+                List<Nurse> findAllNurses = nurseService.findAllNurses();
+                if (findAllNurses.isEmpty()) {
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                } else {
+                    return new ResponseEntity<>(nurseService.findAllNurses(), HttpStatus.OK);
+                }
+            }   catch(Exception e){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
     }
-
-}
+} //Last braket
 
 
 
