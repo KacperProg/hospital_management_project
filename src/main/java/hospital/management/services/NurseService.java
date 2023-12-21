@@ -1,5 +1,6 @@
 package hospital.management.services;
 
+import hospital.management.models.Doctor;
 import hospital.management.models.Nurse;
 import hospital.management.repositories.NurseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,4 +20,10 @@ public class NurseService {
     }
 
     public List<Nurse> findAllNurses(){ return nurseRepository.findAll();}
+
+    //Add a doctor in the database
+    public void saveNurse(Nurse nurse){
+        Nurse addNurse = new Nurse(nurse.getName(), nurse.getBand());
+        nurseRepository.save(addNurse);
+    }
 }
