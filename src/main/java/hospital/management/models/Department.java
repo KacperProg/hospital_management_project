@@ -30,6 +30,7 @@ public class Department {
             joinColumns = @JoinColumn(name = "department_id"),
             inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private List <Doctor> doctors;
+
     //This list(field) represents the collection of 'Doctors' entites associated with a 'Department'
 
 

@@ -43,7 +43,7 @@ public class DataLoader implements ApplicationRunner {
         Doctor house = new Doctor("House MD");
         doctorRepository.save(house);
 
-        Nurse joy = new Nurse("Joy","Top");
+        Nurse joy = new Nurse("Joy","6");
         nurseRepository.save(joy);
     }
 }
