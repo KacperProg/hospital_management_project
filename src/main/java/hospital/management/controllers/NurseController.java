@@ -27,7 +27,7 @@ public class NurseController {
         try {
             Optional<Nurse> findNurseById = nurseService.findNurseById(id);
             if (findNurseById.isPresent()){
-                return new ResponseEntity<>(nurseService.findNurseById(id).get(), HttpStatus.OK);
+                return new ResponseEntity<>(findNurseById.get(), HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

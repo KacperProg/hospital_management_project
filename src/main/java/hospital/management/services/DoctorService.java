@@ -1,4 +1,23 @@
 package hospital.management.services;
 
+import hospital.management.models.Doctor;
+import hospital.management.repositories.DoctorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Optional;
+
+@Service
 public class DoctorService {
-}
+
+    @Autowired
+    DoctorRepository doctorRepository;
+
+    //Get doctor by id
+    public Optional<Doctor> getDoctorById(Long id) {
+        return doctorRepository.findById(id);
+    }
+
+
+} // Last
