@@ -5,10 +5,7 @@ import hospital.management.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +47,13 @@ public class DoctorController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }
+    }
 
+    //Post a doctor in the db
+    @PostMapping
+    public ResponseEntity<List<Doctor>> getDoctor(@RequestBody Doctor doctor){
+        doctorService.saveDoctor(doctor);
+        return new ResponseEntity<>(doctorService.getAllDoctors(), HttpStatus.CREATED);
     }
 
 } //Last
