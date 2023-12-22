@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/departments")
@@ -20,6 +21,10 @@ public class DepartmentController {
 
     @Autowired
     DepartmentService departmentService;
+
+    public String fetchName(Department department) {
+        return department.getName();
+    }
 
     @GetMapping
     public ResponseEntity<List<Department>> getAllDepartments() {
@@ -33,4 +38,10 @@ public class DepartmentController {
         return new ResponseEntity<Optional<Department>>(department, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<String> getDepartmentNames() {
+        List<Department> departments = departmentService.getAllDepartaments();
+        List<String> departmentNames = departments;
+        departments.forEach(department -> {return department.getName();});
+    }
 }
