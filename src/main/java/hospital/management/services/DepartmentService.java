@@ -24,5 +24,8 @@ public class DepartmentService {
 
 
     public List<Department> addNewDepartment(Department department) {
+        Department addDepartment = new Department(department.getName());
+        departmentRepository.save(addDepartment);
+        return null;
     }
 }
