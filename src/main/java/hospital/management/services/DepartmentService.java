@@ -17,11 +17,12 @@ public class DepartmentService {
     public List<Department> getAllDepartaments() {
         return departmentRepository.findAll();
     }
+
     public Optional<Department> getDepartamentById(long id) {
         return departmentRepository.findById(id);
     }
 
 
-
-
+    public List<Department> addNewDepartment(Department department) {
+    }
 }
