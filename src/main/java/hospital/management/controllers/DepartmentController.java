@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
@@ -38,10 +40,13 @@ public class DepartmentController {
         return new ResponseEntity<Optional<Department>>(department, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<String> getDepartmentNames() {
+    @GetMapping(value = "/names")
+    public ResponseEntity<List<String>> getDepartmentNames() {
         List<Department> departments = departmentService.getAllDepartaments();
-        List<String> departmentNames = departments;
-        departments.forEach(department -> {return department.getName();});
+        List<String> departmentNames = new ArrayList<>();
+        for (Department department : departments) {
+            departmentNames.add(department.getName());
+        }
+        return new ResponseEntity<>(departmentNames,HttpStatus.OK);
     }
 }
