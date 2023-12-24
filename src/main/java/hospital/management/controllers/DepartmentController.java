@@ -24,11 +24,8 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
-    public String fetchName(Department department) {
-        return department.getName();
-    }
+    @GetMapping (value = "/all")
 
-    @GetMapping
     public ResponseEntity<List<Department>> getAllDepartments() {
         List<Department> departments = departmentService.getAllDepartaments();
         return new ResponseEntity<List<Department>>(departments, HttpStatus.OK);

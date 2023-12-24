@@ -40,10 +40,26 @@ public class DataLoader implements ApplicationRunner {
         departmentRepository.save(accAndEmerg);
         departmentRepository.save(mentalHealth);
 
-        Doctor house = new Doctor("House MD");
-        doctorRepository.save(house);
+        Doctor doctor = new Doctor("William");
+        Doctor doctor1 = new Doctor("Charles");
+        Doctor doctor2 = new Doctor("Rayster");
+        Doctor doctor3 = new Doctor("Mehlia");
+        Doctor doctor4 = new Doctor("Kacper");
+        doctorRepository.save(doctor);
+        doctorRepository.save(doctor1);
+        doctorRepository.save(doctor2);
+        doctorRepository.save(doctor3);
+        doctorRepository.save(doctor4);
 
-        Nurse joy = new Nurse("Joy","6");
-        nurseRepository.save(joy);
+        Nurse nurse = new Nurse("Joy","6");
+        Nurse nurse1 = new Nurse("Foridha","5");
+        Nurse nurse2 = new Nurse("Janet","6");
+        Nurse nurse3 = new Nurse("Suzie","5");
+        Nurse nurse4 = new Nurse("Justina","7");
+        nurseRepository.save(nurse1);
+        nurseRepository.save(nurse);
+        nurseRepository.save(nurse2);
+        nurseRepository.save(nurse3);
+        nurseRepository.save(nurse4);
     }
 }

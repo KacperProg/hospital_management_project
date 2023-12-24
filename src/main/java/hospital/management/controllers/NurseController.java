@@ -1,16 +1,14 @@
 package hospital.management.controllers;
 
 
+import hospital.management.models.Doctor;
 import hospital.management.models.Nurse;
 import hospital.management.repositories.NurseRepository;
 import hospital.management.services.NurseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.List;
@@ -27,7 +25,7 @@ public class NurseController {
         try {
             Optional<Nurse> findNurseById = nurseService.findNurseById(id);
             if (findNurseById.isPresent()){
-                return new ResponseEntity<>(nurseService.findNurseById(id).get(), HttpStatus.OK);
+                return new ResponseEntity<>(findNurseById.get(), HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -48,6 +46,14 @@ public class NurseController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
     }
+
+    //Post a nurse in the db
+    @PostMapping
+    public ResponseEntity<List<Nurse>> addNurse(@RequestBody Nurse nurse){
+        nurseService.saveNurse(nurse);
+        return new ResponseEntity<>(nurseService.findAllNurses(), HttpStatus.CREATED);
+    }
+
 } //Last braket
 
 
