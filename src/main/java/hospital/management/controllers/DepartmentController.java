@@ -72,9 +72,6 @@ public class DepartmentController {
         }
     }
 
-
-} 
-
     @GetMapping(value = "/names")
     public ResponseEntity<List<String>> getDepartmentNames() {
         List<Department> departments = departmentService.getAllDepartaments();
