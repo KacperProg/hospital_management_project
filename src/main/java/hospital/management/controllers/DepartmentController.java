@@ -40,13 +40,15 @@ public class DepartmentController {
         }
     }
 
-//    @PatchMapping(value ="/{id}/{department_id}")
-//    public ResponseEntity<Nurse> addNursesToDepartment(@PathVariable Long id, @PathVariable Long department_id,
-//                                                       @RequestBody Nurse nurse)
-//    {
-//        return new ResponseEntity<>(HttpStatus.)
-
-
+    @PatchMapping(value ="/{department_id}")
+    public ResponseEntity<Department> addNursesToDepartment(@PathVariable Long department_id,
+                                                       @RequestBody Nurse nurse) {
+        try {
+            Department department = departmentService.addNurseToDepartment(department_id, nurse);
+            return new ResponseEntity<>(department, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
