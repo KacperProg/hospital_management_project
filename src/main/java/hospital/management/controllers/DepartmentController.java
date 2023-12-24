@@ -1,6 +1,7 @@
 package hospital.management.controllers;
 
 import hospital.management.models.Department;
+import hospital.management.models.Nurse;
 import hospital.management.repositories.DepartmentRepository;
 import hospital.management.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,15 @@ public class DepartmentController {
             }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+//    @PatchMapping(value ="/{id}/{department_id}")
+//    public ResponseEntity<Nurse> addNursesToDepartment(@PathVariable Long id, @PathVariable Long department_id,
+//                                                       @RequestBody Nurse nurse)
+//    {
+//        return new ResponseEntity<>(HttpStatus.)
+
+
     }
 
 }
