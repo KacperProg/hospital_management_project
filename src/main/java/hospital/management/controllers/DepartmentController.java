@@ -10,8 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/departments")
@@ -24,6 +27,7 @@ public class DepartmentController {
     NurseService nurseService;
 
     @GetMapping
+
     public ResponseEntity<List<Department>> getAllDepartments() {
         List<Department> departments = departmentService.getAllDepartaments();
         return new ResponseEntity<List<Department>>(departments, HttpStatus.OK);
@@ -34,6 +38,7 @@ public class DepartmentController {
         Optional<Department> department = departmentService.getDepartamentById(id);
         return new ResponseEntity<Optional<Department>>(department, HttpStatus.OK);
     }
+
 
     @PostMapping
     public ResponseEntity<List<Department>> createADepartment(@RequestBody Department department){
@@ -68,4 +73,17 @@ public class DepartmentController {
     }
 
 
+} 
+
+    @GetMapping(value = "/names")
+    public ResponseEntity<List<String>> getDepartmentNames() {
+        List<Department> departments = departmentService.getAllDepartaments();
+        List<String> departmentNames = new ArrayList<>();
+        for (Department department : departments) {
+            departmentNames.add(department.getName());
+        }
+        return new ResponseEntity<>(departmentNames,HttpStatus.OK);
+    }
+
 } //Last bracket
+
