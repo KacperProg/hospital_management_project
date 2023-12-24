@@ -81,4 +81,8 @@ public class Department {
     public void setDoctors(List<Doctor> doctors) {
         this.doctors = doctors;
     }
+
+    public void addNursesToDepartment(Nurse nurse){ this.nurses.add(nurse);}
+
+    public void addDoctorsToDepartment(Doctor doctor){this.doctors.add(doctor);}
 }

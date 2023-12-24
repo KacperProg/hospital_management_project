@@ -1,15 +1,14 @@
 package hospital.management.controllers;
 
 import hospital.management.models.Department;
+import hospital.management.models.Nurse;
 import hospital.management.repositories.DepartmentRepository;
 import hospital.management.services.DepartmentService;
+import hospital.management.services.NurseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -24,7 +23,10 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
-    @GetMapping (value = "/all")
+    @Autowired
+    NurseService nurseService;
+
+    @GetMapping
 
     public ResponseEntity<List<Department>> getAllDepartments() {
         List<Department> departments = departmentService.getAllDepartaments();
@@ -37,6 +39,42 @@ public class DepartmentController {
         return new ResponseEntity<Optional<Department>>(department, HttpStatus.OK);
     }
 
+
+    @PostMapping
+    public ResponseEntity<List<Department>> createADepartment(@RequestBody Department department){
+        try {
+           return new ResponseEntity<>(departmentService.addNewDepartment(department),HttpStatus.OK) ;
+            }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+//    @PatchMapping(value ="/{department_id}")
+//    public ResponseEntity<Department> addNursesToDepartment(@PathVariable Long department_id,
+//                                                       @RequestBody Nurse nurse) {
+//        try {
+//            Department department = departmentService.addNurseToDepartment(department_id, nurse);
+//            return new ResponseEntity<>(department, HttpStatus.OK);
+//        } catch (Exception e){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+
+    //Adding all nurses to a department
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Department> updateDepartmentForNurse(@RequestBody Department department, @PathVariable long id){
+        try{
+            Department updateDepartment = departmentService.updateDepartment(department, id);
+            return new ResponseEntity<>(updateDepartment, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+} 
+
     @GetMapping(value = "/names")
     public ResponseEntity<List<String>> getDepartmentNames() {
         List<Department> departments = departmentService.getAllDepartaments();
@@ -46,4 +84,6 @@ public class DepartmentController {
         }
         return new ResponseEntity<>(departmentNames,HttpStatus.OK);
     }
-}
+
+} //Last bracket
+
