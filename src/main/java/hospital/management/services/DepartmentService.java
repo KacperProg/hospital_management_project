@@ -48,6 +48,17 @@ public class DepartmentService {
 //        return department;
 //    }
 
+//    Step. 1
+//    Get a department by id that we want to post a nurse
+//    Save the department
+//    Once department is saved, we can access the nurses inside it
+
+//    Step. 2
+//    Find individual nurse by id
+//    once nurse is found by id, get the nurse
+//    set the nurse in the department
+//    get the nurse properties to add
+
 
     //    adding an existing / or new nurse in an existing department
     //Adding all nurses to a department
