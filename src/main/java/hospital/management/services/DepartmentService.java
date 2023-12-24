@@ -17,6 +17,9 @@ public class DepartmentService {
     @Autowired
     DepartmentRepository departmentRepository;
 
+    @Autowired
+    NurseRepository nurseRepository;
+
 
     public List<Department> getAllDepartaments() {
         return departmentRepository.findAll();
@@ -33,15 +36,41 @@ public class DepartmentService {
         return null;
     }
 
-    @Transactional
-    public Department addNurseToDepartment(Long department_id, Nurse nurse) {
-        Department department = departmentRepository.findById(department_id).get();
-        if (departmentRepository.findById(department_id).isEmpty()) {
-            return null;
+//    @Transactional
+//    public Department addNurseToDepartment(Long department_id, Nurse nurse) {
+//        Department department = departmentRepository.findById(department_id).get();
+//        if (departmentRepository.findById(department_id).isEmpty()) {
+//            return null;
+//        } else {
+//            department.addNursesToDepartment(nurse);
+//            departmentRepository.save(department);
+//        }
+//        return department;
+//    }
+
+
+    //    adding an existing / or new nurse in an existing department
+    //Adding all nurses to a department
+    public Department updateDepartment(Department department, long id) throws Exception {
+        Optional<Department> departmentToUpdate = departmentRepository.findById(id);
+        if (departmentToUpdate.isEmpty()) {
+            throw new Exception("No nurse exist in this department");
         } else {
-            department.addNursesToDepartment(nurse);
-            departmentRepository.save(department);
+            //Getting the department that we want.
+            Department departmentToAddNurse = departmentToUpdate.get();
+
+            //Set the department that we want to update
+            //We find all nurse here
+            departmentToAddNurse.setNurses(nurseRepository.findAll());
+            departmentRepository.save(departmentToAddNurse);
+
+            //Setting the new department
+            Department departmentToUpdateCheck = new Department(
+                    departmentToAddNurse.getName()
+            );
+            return departmentToUpdateCheck;
         }
-        return department;
+
     }
+
 } //Last Bracket
