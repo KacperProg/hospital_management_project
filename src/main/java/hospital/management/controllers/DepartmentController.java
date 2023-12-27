@@ -71,6 +71,7 @@ public class DepartmentController {
         }
     }
 
+
     //Try to add a nurse to a department
     @PostMapping(value = "/{id}/nurses")
     public ResponseEntity<Nurse> addNewNurse(@RequestBody Nurse nurse, @PathVariable long id){
@@ -81,6 +82,7 @@ public class DepartmentController {
             return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
         }
     }
+
 
 
     @GetMapping(value = "/names")
