@@ -50,7 +50,6 @@ public class DepartmentService {
 
 //    Step. 1
 //    Get a department by id that we want to post a nurse
-//    Save the department
 //    Once department is saved, we can access the nurses inside it
 
 //    Step. 2

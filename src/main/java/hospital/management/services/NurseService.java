@@ -22,8 +22,7 @@ public class NurseService {
     public List<Nurse> findAllNurses(){ return nurseRepository.findAll();}
 
     //Add a doctor in the database
-    public void saveNurse(Nurse nurse){
-        Nurse addNurse = new Nurse(nurse.getName(), nurse.getBand());
-        nurseRepository.save(addNurse);
+    public Nurse addNurse(Nurse nurse){
+        return nurseRepository.save(nurse);
     }
 }
