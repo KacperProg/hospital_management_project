@@ -50,7 +50,7 @@ public class NurseController {
     //Post a nurse in the db
     @PostMapping
     public ResponseEntity<List<Nurse>> addNurse(@RequestBody Nurse nurse){
-        nurseService.saveNurse(nurse);
+        nurseService.addNurse(nurse);
         return new ResponseEntity<>(nurseService.findAllNurses(), HttpStatus.CREATED);
     }
 

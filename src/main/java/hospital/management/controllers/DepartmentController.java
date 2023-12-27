@@ -27,7 +27,6 @@ public class DepartmentController {
     NurseService nurseService;
 
     @GetMapping
-
     public ResponseEntity<List<Department>> getAllDepartments() {
         List<Department> departments = departmentService.getAllDepartaments();
         return new ResponseEntity<List<Department>>(departments, HttpStatus.OK);
@@ -71,6 +70,20 @@ public class DepartmentController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+
+
+    //Try to add a nurse to a department
+    @PostMapping(value = "/{id}/nurses")
+    public ResponseEntity<Nurse> addNewNurse(@RequestBody Nurse nurse, @PathVariable long id){
+        try {
+            Nurse nurseNew = nurseService.addNurse(nurse);
+            return new ResponseEntity<>(nurseNew, HttpStatus.CREATED);
+        } catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
+        }
+    }
+
+
 
     @GetMapping(value = "/names")
     public ResponseEntity<List<String>> getDepartmentNames() {
