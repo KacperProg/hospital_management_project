@@ -13,6 +13,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -30,15 +32,19 @@ public class DataLoader implements ApplicationRunner {
     }
     @Override
     public void run(ApplicationArguments args) throws Exception{
-        Hospital kingsCollege = new Hospital("King's College", "London SW9");
-        Hospital LSMP = new Hospital("Leeds Student Medical Practice", "Leeds, LS6");
-        hospitalRepository.save(kingsCollege);
-        hospitalRepository.save(LSMP);
 
         Department accAndEmerg = new Department("A&E");
         Department mentalHealth = new Department("Mental Health");
         departmentRepository.save(accAndEmerg);
         departmentRepository.save(mentalHealth);
+
+        Hospital kingsCollege = new Hospital("King's College", "London SW9");
+        Hospital LSMP = new Hospital("Leeds Student Medical Practice", "Leeds, LS6");
+        List<Department> kingsDepartments = kingsCollege.getDepartments();
+        kingsDepartments.add(accAndEmerg);
+        kingsCollege.setDepartments(kingsDepartments);
+        hospitalRepository.save(kingsCollege);
+        hospitalRepository.save(LSMP);
 
         Doctor doctor = new Doctor("William");
         Doctor doctor1 = new Doctor("Charles");

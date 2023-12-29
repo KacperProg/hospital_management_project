@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HospitalService {
@@ -20,5 +21,11 @@ public class HospitalService {
     public List<Hospital> getAllHospitals(){
         return hospitalRepository.findAll();
     }
+
+    public Optional<Hospital> getHospitalById(Long id){
+        return hospitalRepository.findById(id);
+    }
+
+
 }
 

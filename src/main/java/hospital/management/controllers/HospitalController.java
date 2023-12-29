@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -38,6 +40,19 @@ public class HospitalController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Hospital> getHospitalId(@PathVariable Long id){
+    try {
+        Optional<Hospital> fetchedHospital = hospitalService.getHospitalById(id);
+        return new ResponseEntity<>(fetchedHospital.get(), HttpStatus.OK);
+    } catch (Exception e){
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    }
+    }
+
+
 
 //    @GetMapping
 //    public ResponseEntity<Department> getAllDoctors(){}
