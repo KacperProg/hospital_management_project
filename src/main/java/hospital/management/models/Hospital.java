@@ -20,9 +20,10 @@ public class Hospital {
     @Column
     private  String address;
 
-    @Column
-    @OneToMany(mappedBy = "hospital")
-    @JsonIgnoreProperties({"hospital"})
+    @ManyToMany
+    @JoinTable(name = "hospital_department",
+            joinColumns = @JoinColumn(name = "hospital_id"),
+            inverseJoinColumns = @JoinColumn(name = "department_id"))
 
     private List <Department> departments;
 

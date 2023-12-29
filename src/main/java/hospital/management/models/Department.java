@@ -19,10 +19,9 @@ public class Department {
     private String name;
 
 
-    @ManyToOne
-    @JoinColumn(name = "hospital_id")
+    @ManyToMany(mappedBy = "departments")
     @JsonIgnoreProperties({"departments"})
-    private Hospital hospital;
+    private List<Hospital> hospitals;
 
 
     @ManyToMany
@@ -45,6 +44,7 @@ public class Department {
         this.name = name;
         this.nurses = new ArrayList<>();
         this.doctors = new ArrayList<>();
+        this.hospitals = new ArrayList<>();
     }
 
     public Department() {
@@ -76,6 +76,14 @@ public class Department {
 
     public List<Doctor> getDoctors() {
         return doctors;
+    }
+
+    public List<Hospital> getHospitals() {
+        return hospitals;
+    }
+
+    public void setHospitals(List<Hospital> hospitals) {
+        this.hospitals = hospitals;
     }
 
     public void setDoctors(List<Doctor> doctors) {

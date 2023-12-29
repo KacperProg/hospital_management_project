@@ -48,8 +48,7 @@ public class Doctor {
     public void setName(String name) {
         this.name = name;
     }
-    @ManyToMany(mappedBy = "doctors")
-    @JsonIgnoreProperties({"departments"})
+
     public List<Department> getDepartments() {
         return departments;
     }
